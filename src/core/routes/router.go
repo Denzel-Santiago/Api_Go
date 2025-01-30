@@ -4,14 +4,14 @@ import (
 	"database/sql"
 	"net/http"
 
+	"demo/src/Videojuego/application"
+	"demo/src/Videojuego/infraestructure/controllers"
+	"demo/src/Videojuego/infraestructure/repositories"
+	productRoutes "demo/src/Videojuego/infraestructure/routes"
 	userRoutes "demo/src/users/infraestructure/routes"
-	productRoutes "demo/src/product/infraestructure/routes"
-	"demo/src/product/application"
-	"demo/src/product/infraestructure/controllers"
-	"demo/src/product/infraestructure/repositories"
 
-	"github.com/gorilla/mux"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/mux"
 )
 
 func NewRouter(db *sql.DB) http.Handler {
@@ -23,17 +23,17 @@ func NewRouter(db *sql.DB) http.Handler {
 
 	// Crear router de `gin` para productos
 	ginRouter := gin.Default() // Se usa `Default()` para logs y recovery
-	productRepo := repositories.NewProductRepository(db)
-	productUsecase := application.NewManageProductsUsecase(productRepo)
-	getProductUsecase := application.NewGetProductUsecase(productRepo)
-	updateProductUsecase := application.NewUpdateProductUsecase(productRepo)
-	deleteProductUsecase := application.NewDeleteProductUsecase(productRepo)
+	VideojuegoRepo := repositories.NewVideojuegoRepository(db)
+	VideojuegoUsecase := application.NewManageVideojuegosUsecase(VideojuegoRepo)
+	getVideojuegoUsecase := application.NewGetVideojuegoUsecase(VideojuegoRepo)
+	updateVideojuegoUsecase := application.NewUpdateVideojuegoUsecase(VideojuegoRepo)
+	deleteVideojuegoUsecase := application.NewDeleteVideojuegoUsecase(VideojuegoRepo)
 
-	productController := controllers.NewProductController(
-		productUsecase,
-		getProductUsecase,
-		updateProductUsecase,
-		deleteProductUsecase,
+	productController := controllers.NewVideojuegoController(
+		VideojuegoUsecase,
+		getVideojuegoUsecase,
+		updateVideojuegoUsecase,
+		deleteVideojuegoUsecase,
 	)
 
 	// Registrar rutas de productos en `gin`
