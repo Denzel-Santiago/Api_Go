@@ -1,0 +1,12 @@
+package domain
+
+import (
+	"demo/src/users/domain/entities"
+)
+
+type IUser interface {
+	Save(user entities.User) error
+	Update(id int, user entities.User) error
+	Delete(id int) error
+	Getall() ([]entities.User, error)
+}

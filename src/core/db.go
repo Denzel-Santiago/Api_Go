@@ -1,31 +1,41 @@
-//db.go
 package core
 
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
-func ConnectDB() (*sql.DB, error) {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
+var db *sql.DB
+
+func InitDB() {
+
+	if err := godotenv.Load(); err != nil {
+		log.Println("No se pudo hacer conexion al .ENV")
+	}
+
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
+		os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_HOST"), os.Getenv("DB_PORT"),
 		os.Getenv("DB_NAME"),
 	)
-	db, err := sql.Open("mysql", dsn)
+
+	var err error
+	db, err = sql.Open("mysql", dsn)
 	if err != nil {
-		return nil, err
+		log.Fatal("Error al conectar con la Base de datos", err)
 	}
-
 	if err = db.Ping(); err != nil {
-		return nil, err
+		log.Fatal("No se pudo conectar a la BD:", err)
 	}
 
-	fmt.Println("Bd conectado correctamente")
-	return db, nil
+	fmt.Println("Conexión a la BD exitosa")
+}
+
+func GetDB() *sql.DB {
+	return db
 }
