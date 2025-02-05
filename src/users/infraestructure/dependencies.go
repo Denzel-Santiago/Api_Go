@@ -10,12 +10,12 @@ func InitUserDependencies() (
 	*DeleteUserController,
 	*ViewAllUsersController,
 ) {
-	repo := NewMysqlUsuarioRepository()
+	repo := NewMysqlUsuarioRepository() // ⚠️ Debe implementar completamente IUser
 
-	createUseCase := application.CreateUserUseCase(repo)
-	viewallUseCase := application.ViewUser(repo)
-	deleteUseCase := application.DeleteUserUseCase(repo)
-	updateUseCase := application.UpdateUser(repo)
+	createUseCase := application.NewCreateUserUseCase(repo) // ✅ Llamar a NewCreateUserUseCase correctamente
+	viewallUseCase := application.NewViewUser(repo)
+	deleteUseCase := application.NewDeleteUserUseCase(repo)
+	updateUseCase := application.NewUpdateUser(repo)
 
 	CreateController := NewCreateUserController(createUseCase)
 	ViewAllController := NewViewAllUsersController(viewallUseCase)

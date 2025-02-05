@@ -9,4 +9,5 @@ type IUser interface {
 	Update(id int, user entities.User) error
 	Delete(id int) error
 	GetAll() ([]entities.User, error)
+	FindByID(id int) (entities.User, error) // 🔹 Agregando la función faltante
 }
