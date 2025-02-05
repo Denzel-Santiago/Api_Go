@@ -1,10 +1,9 @@
-package controllers
+package infrastructure
 
 import (
-	"net/http"
-
 	"demo/src/users/application"
 	"demo/src/users/domain/entities"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,7 +23,7 @@ func (ctrl *CreateUserController) Run(c *gin.Context) {
 
 	if errJSON := c.ShouldBindJSON(&user); errJSON != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "Datos del usuario inválidos",
+			"message": "Datos del Usuario inválidos",
 			"error":   errJSON.Error(),
 		})
 		return
@@ -41,7 +40,7 @@ func (ctrl *CreateUserController) Run(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message":  "El empleado ha sido agregado",
+		"message":  "El usuario ha sido agregado",
 		"empleado": userCreado,
 	})
 }

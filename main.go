@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
+
 	"demo/src/core"
-	"demo/src/users/application"
-	"demo/src/users/domain/entities"
 	usersInfra "demo/src/users/infrastructure"
 )
 

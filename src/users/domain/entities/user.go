@@ -1,18 +1,24 @@
 package entities
 
+import "time"
+
 type User struct {
-	ID       int    `json:"id"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	ID            int       `json:"id"`
+	Name          string    `json:"name"`
+	Email         string    `json:"email"`
+	Password      string    `json:"password"`
+	FechaRegistro time.Time `json:"fecha_registro"`
+	TipoUsuario   string    `json:"tipo_usuario"`
 }
 
-func NewUser(id int, Name, Email, Password string) *User {
+func NewUser(id int, Name, Email, Password string, FechaRegistro time.Time, TipoUsuario string) *User {
 	return &User{
-		ID:       id,
-		Name:     Name,
-		Email:    Email,
-		Password: Password,
+		ID:            id,
+		Name:          Name,
+		Email:         Email,
+		Password:      Password,
+		FechaRegistro: FechaRegistro,
+		TipoUsuario:   TipoUsuario,
 	}
 }
 

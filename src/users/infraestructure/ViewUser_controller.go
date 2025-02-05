@@ -1,17 +1,18 @@
-package controllers
+package infrastructure
 
 import (
 	"net/http"
 
 	"demo/src/users/application"
+
 	"github.com/gin-gonic/gin"
 )
 
 type ViewAllUsersController struct {
-	useCase *application.ViewAllUsers
+	useCase *application.ViewUser
 }
 
-func NewViewAllUsersController(useCase *application.ViewAllUsers) *ViewAllUsersController {
+func NewViewAllUsersController(useCase *application.ViewUser) *ViewAllUsersController {
 	return &ViewAllUsersController{useCase: useCase}
 }
 

@@ -1,4 +1,4 @@
-package controllers
+package infrastructure
 
 import (
 	"net/http"
@@ -6,6 +6,7 @@ import (
 
 	"demo/src/users/application"
 	"demo/src/users/domain/entities"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +18,7 @@ func NewUpdateUserController(useCase *application.UpdateUser) *UpdateUserControl
 	return &UpdateUserController{useCase: useCase}
 }
 
-func (uc *UpdateUserController) Execute(c *gin.Context) {
+func (uuc *UpdateUserController) Execute(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "ID inválido"})
@@ -30,7 +31,7 @@ func (uc *UpdateUserController) Execute(c *gin.Context) {
 		return
 	}
 
-	err = uc.useCase.Execute(id, user)
+	err = uuc.useCase.Execute(id, user)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "No se pudo actualizar el usuario"})
 		return

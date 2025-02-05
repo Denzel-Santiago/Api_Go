@@ -8,5 +8,5 @@ type IUser interface {
 	Save(user entities.User) error
 	Update(id int, user entities.User) error
 	Delete(id int) error
-	Getall() ([]entities.User, error)
+	GetAll() ([]entities.User, error)
 }

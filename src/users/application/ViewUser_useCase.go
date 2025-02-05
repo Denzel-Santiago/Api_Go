@@ -16,5 +16,5 @@ func NewViewUser(db domain.IUser) *ViewUser {
 }
 
 func (us *ViewUser) Execute() ([]entities.User, error) {
-	return us.db.Getall()
+	return us.db.GetAll()
 }

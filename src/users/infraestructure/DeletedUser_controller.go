@@ -1,10 +1,11 @@
-package controllers
+package infrastructure
 
 import (
 	"net/http"
 	"strconv"
 
 	"demo/src/users/application"
+
 	"github.com/gin-gonic/gin"
 )
 
