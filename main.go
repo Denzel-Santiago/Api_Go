@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"demo/src/core"
-	"demo/src/users/infrastructure" // ✅ Agregar esta línea para importar usersInfra correctamente
+	"demo/src/users/infraestructure" // ✅ Agregar esta línea para importar usersInfra correctamente
 )
 
 func main() {
